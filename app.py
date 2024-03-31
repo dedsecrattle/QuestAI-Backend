@@ -5,6 +5,9 @@ import vertexai.preview.generative_models as generative_models
 
 app = Flask(__name__)
 
+@app.route('/')
+def Home():
+    return "Welcome to QuestAI backend";
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.get_json()
