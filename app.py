@@ -47,6 +47,7 @@ def generate():
     for response in responses:
         generated_content += response.text
 
+    generated_content = generated_content.format()
     return jsonify({"generated_content": generated_content})
 
 if __name__ == '__main__':
