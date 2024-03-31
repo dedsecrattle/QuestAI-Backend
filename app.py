@@ -1,11 +1,8 @@
 from flask import Flask, request, jsonify
 import vertexai
-import os
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 
-service_account_key_path = "/etc/secrets/googleauth.json"
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = service_account_key_path
 
 app = Flask(__name__)
 
