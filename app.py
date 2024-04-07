@@ -8,7 +8,7 @@ import vertexai.preview.generative_models as generative_models
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/etc/secrets/googleauth.json"
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": ["http://localhost:5173/"]}})
+cors = CORS(app)
 
 @app.route('/')
 def Home():
