@@ -1,3 +1,4 @@
 flask
 vertexai
 gunicorn
+flask-cors

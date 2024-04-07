@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify
 import os
 import vertexai
+from flask_cors import CORS
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/etc/secrets/googleauth.json"
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": ["http://localhost:5173/"]}})
 
 @app.route('/')
 def Home():
