@@ -51,5 +51,46 @@ def generate():
 
     return jsonify({"generated_content": generated_content})
 
+
+@app.route('/quiz', methods=['POST'])
+def quiz():
+    data = request.get_json()
+    topic = data.get('topic', '')
+    subtopic = data.get('subtopic', '')
+    max_output_tokens = data.get('max_output_tokens', 3729)
+    temperature = data.get('temperature', 0.9)
+    top_p = data.get('top_p', 1)
+
+    harm_categories = {
+        generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    }
+
+    vertexai.init(project="cs3263-project", location="us-central1")
+    model = GenerativeModel("gemini-1.0-pro-001")
+    prompt = f"Generate 10 Quiz Question on topic {topic} and subtopic {subtopic}"
+    generation_config = {
+        "max_output_tokens": max_output_tokens,
+        "temperature": temperature,
+        "top_p": top_p,
+    }
+
+    responses = model.generate_content(
+        [prompt],
+        generation_config=generation_config,
+        safety_settings=harm_categories,
+        stream=True,
+    )
+
+    generated_content = ""
+    for response in responses:
+        generated_content += response.text
+
+    return jsonify({"generated_content": generated_content})
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
