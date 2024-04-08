@@ -92,7 +92,7 @@ def quiz():
 
 
 @app.route('/summary', methods=['POST'])
-def quiz():
+def summary():
     data = request.get_json()
     text = data.get('extracted_text', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
