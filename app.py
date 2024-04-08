@@ -36,7 +36,6 @@ def generate():
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
-        "markdown": False
     }
 
     responses = model.generate_content(
@@ -76,7 +75,6 @@ def quiz():
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
-        "markdown": False
     }
 
     responses = model.generate_content(
