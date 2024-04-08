@@ -4,6 +4,7 @@ import vertexai
 from flask_cors import CORS
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
+from vertexai.language_models import TextGenerationModel
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/etc/secrets/googleauth.json"
 
@@ -99,34 +100,19 @@ def summary():
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
 
-    harm_categories = {
-        generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-        generative_models.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-        generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-        generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    }
+    prompt = f"Summarise the Following text - {text}"
 
     vertexai.init(project="cs3263-project", location="us-central1")
-    model = GenerativeModel("gemini-1.0-pro-001")
-    prompt = f"Generate summary of around 1000 words for the following text: {text}"
-    generation_config = {
-        "max_output_tokens": max_output_tokens,
-        "temperature": temperature,
-        "top_p": top_p,
+    parameters = {
+    "max_output_tokens": 1024,
+    "temperature": 0.9,
+    "top_p": 1
     }
-
-    responses = model.generate_content(
-        [prompt],
-        generation_config=generation_config,
-        safety_settings=harm_categories,
-        stream=True,
+    model = TextGenerationModel.from_pretrained("text-bison-32k")
+    response = model.predict(
+        prompt
     )
-
-    generated_content = ""
-    for response in responses:
-        generated_content += response.text
-
-    return jsonify({"generated_content": generated_content})
+    return jsonify({"generated_content": response.text})
 
 if __name__ == '__main__':
     app.run(debug=True)
