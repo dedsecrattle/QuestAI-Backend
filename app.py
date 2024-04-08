@@ -100,11 +100,11 @@ def summary():
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
 
-    prompt = f"Summarise the Following text in around 1000 words- {text}"
+    prompt = f"Summarise the Following text in around 500 words- {text}"
 
     vertexai.init(project="cs3263-project", location="us-central1")
     parameters = {
-    "max_output_tokens": 1024,
+    "max_output_tokens": 2000,
     "temperature": 0.9,
     "top_p": 1
     }
