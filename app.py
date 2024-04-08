@@ -70,7 +70,7 @@ def quiz():
 
     vertexai.init(project="cs3263-project", location="us-central1")
     model = GenerativeModel("gemini-1.0-pro-001")
-    prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option in the format question | options | correct_answer"
+    prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option"
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
