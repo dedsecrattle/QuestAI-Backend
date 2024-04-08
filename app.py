@@ -110,7 +110,7 @@ def summary():
     }
     model = TextGenerationModel.from_pretrained("text-bison-32k")
     response = model.predict(
-        prompt
+        prompt,**parameters
     )
     return jsonify({"generated_content": response.text})
 
