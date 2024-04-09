@@ -40,7 +40,7 @@ def generate():
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
-        "system_prompt": 
+        "system_prompt": system_prompt
     }
 
     responses = model.generate_content(
