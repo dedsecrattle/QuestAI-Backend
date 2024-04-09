@@ -20,7 +20,6 @@ def generate():
     topic = data.get('topic', '')
     subtopic = data.get('subtopic', '')
     level =  data.get('level', '')
-    print(level)
     max_output_tokens = data.get('max_output_tokens', 3729)
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
@@ -32,15 +31,14 @@ def generate():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    system_prompt = "You are a helpful AI , Assistant helping students by providing Learning content based on a topic and sub-topic"
     vertexai.init(project="cs3263-project", location="us-central1")
     model = GenerativeModel("gemini-1.0-pro-001")
-    prompt = f"Generate content on the topic {topic} and subtopic {subtopic} in around 1000 words for a student of {level} level"
+    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , 
+      Generate content on the topic {topic} and subtopic {subtopic} in around 1000 words for a student of {level} level"
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
-        "system_prompt": system_prompt
     }
 
     responses = model.generate_content(
