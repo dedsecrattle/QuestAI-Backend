@@ -11,6 +11,11 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/etc/secrets/googleauth.json"
 app = Flask(__name__)
 cors = CORS(app)
 
+vertexai.init(project="cs3263-project", location="us-central1")
+model = GenerativeModel("gemini-1.0-pro-001")
+chat = model.start_chat()
+
+
 @app.route('/')
 def Home():
     return "Welcome to QuestAI backend";
@@ -31,8 +36,8 @@ def generate():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    vertexai.init(project="cs3263-project", location="us-central1")
-    model = GenerativeModel("gemini-1.0-pro-001")
+
+
     prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate content on the topic {topic} and subtopic {subtopic} in around 1500 words for a student of {level} level"
     generation_config = {
         "max_output_tokens": max_output_tokens,
@@ -71,8 +76,6 @@ def quiz():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    vertexai.init(project="cs3263-project", location="us-central1")
-    model = GenerativeModel("gemini-1.0-pro-001")
     prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option with difficulty set to {level} level Student"
     generation_config = {
         "max_output_tokens": max_output_tokens,
@@ -104,17 +107,34 @@ def summary():
 
     prompt = f"Summarise the following text and highlight the key points - {text}"
 
-    vertexai.init(project="cs3263-project", location="us-central1")
-    parameters = {
-    "max_output_tokens": 2000,
-    "temperature": 0.9,
-    "top_p": 1
-    }
+
     model = TextGenerationModel.from_pretrained("text-bison-32k")
     response = model.predict(
         prompt,**parameters
     )
     return jsonify({"generated_content": response.text})
 
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    context = data.get('context', '')
+    question = data.get('question', '')
+
+    prompt = f"{context}  - Given the above text answer the following question: {question}"
+
+    parameters = {
+    "max_output_tokens": 2000,
+    "temperature": 0.1,
+    "top_p": 1
+    }
+    model = TextGenerationModel.from_pretrained("text-bison-32k")
+    response = model.predict(
+        prompt, **parameters
+    )
+    return jsonify({"generated_content": response.text})
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
