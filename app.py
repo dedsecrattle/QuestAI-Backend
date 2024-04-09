@@ -19,6 +19,7 @@ def generate():
     data = request.get_json()
     topic = data.get('topic', '')
     subtopic = data.get('subtopic', '')
+    level =  data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
@@ -32,7 +33,7 @@ def generate():
 
     vertexai.init(project="cs3263-project", location="us-central1")
     model = GenerativeModel("gemini-1.0-pro-001")
-    prompt = f"Generate content on the topic {topic} and subtopic {subtopic} in around 1000 words"
+    prompt = f"Generate content on the topic {topic} and subtopic {subtopic} in around 1000 words according to {level} level"
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
