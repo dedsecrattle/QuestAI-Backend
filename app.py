@@ -33,7 +33,7 @@ def generate():
 
     vertexai.init(project="cs3263-project", location="us-central1")
     model = GenerativeModel("gemini-1.0-pro-001")
-    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate content on the topic {topic} and subtopic {subtopic} in around 1000 words for a student of {level} level"
+    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate content on the topic {topic} and subtopic {subtopic} in around 1500 words for a student of {level} level"
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
@@ -73,7 +73,7 @@ def quiz():
 
     vertexai.init(project="cs3263-project", location="us-central1")
     model = GenerativeModel("gemini-1.0-pro-001")
-    prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option with difficulty set to {level} level"
+    prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option with difficulty set to {level} level Student"
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
