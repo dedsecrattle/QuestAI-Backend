@@ -106,7 +106,11 @@ def summary():
     top_p = data.get('top_p', 1)
 
     prompt = f"Summarise the following text and highlight the key points - {text}"
-
+    parameters = {
+    "max_output_tokens": 2000,
+    "temperature": 0.1,
+    "top_p": 1
+    }
 
     model = TextGenerationModel.from_pretrained("text-bison-32k")
     response = model.predict(
