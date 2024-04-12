@@ -12,13 +12,13 @@ app = Flask(__name__)
 cors = CORS(app)
 
 vertexai.init(project="cs3263-project", location="us-central1")
-model = GenerativeModel("gemini-1.0-pro-001")
+model = GenerativeModel("gemini-1.5-pro-preview-0409")
 chat = model.start_chat()
 
 
 @app.route('/')
 def Home():
-    return "Welcome to QuestAI backend";
+    return "Welcome to QuestAI backend"
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.get_json()
