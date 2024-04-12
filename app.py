@@ -76,7 +76,7 @@ def quiz():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option with difficulty set to {level} level Student"
+    prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option for a {level} level Student"
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
@@ -105,7 +105,7 @@ def summary():
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
 
-    prompt = f"Summarise the following text and highlight the key points - {text}"
+    prompt = f"{text}"
     parameters = {
     "max_output_tokens": 2000,
     "temperature": 0.1,
@@ -124,16 +124,21 @@ def chat():
     data = request.get_json()
     context = data.get('context', '')
     question = data.get('question', '')
+    max_output_tokens = data.get('max_output_tokens', 3729)
+    temperature = data.get('temperature', 0.9)
+    top_p = data.get('top_p', 1)
+
+    generation_config = {
+        "max_output_tokens": max_output_tokens,
+        "temperature": temperature,
+        "top_p": top_p,
+    }
 
     prompt = f"{context}  - Given the above text answer the following question: {question}"
 
-    parameters = {
-    "max_output_tokens": 2000,
-    "temperature": 0.1,
-    "top_p": 1
-    }
     response = model.generate_content(
         [prompt],
+        generation_config=generation_config,
         stream=False,
     )
     return jsonify({"generated_content": response.text})
