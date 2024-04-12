@@ -12,7 +12,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 vertexai.init(project="cs3263-project", location="us-central1")
-model = GenerativeModel("gemini-1.5-pro-preview-0409")
+model = GenerativeModel("gemini-1.0-pro-002")
 chat = model.start_chat()
 
 
@@ -97,7 +97,7 @@ def summary():
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
 
-    prompt = f"{text}"
+    prompt = f"Summarise the following text - {text}"
     parameters = {
     "max_output_tokens": 2000,
     "temperature": 0.1,
