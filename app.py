@@ -38,25 +38,22 @@ def generate():
 
 
 
-    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate content on the topic {topic} and subtopic {subtopic} in around 1500 words for a student of {level} level"
+    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate Learning content on the topic {topic} and subtopic {subtopic} in around 1500 words
+      for a {level} level student."
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
     }
 
-    responses = model.generate_content(
+    response = model.generate_content(
         [prompt],
         generation_config=generation_config,
         safety_settings=harm_categories,
-        stream=True,
+        stream=False,
     )
 
-    generated_content = ""
-    for response in responses:
-        generated_content += response.text
-
-    return jsonify({"generated_content": generated_content})
+    return jsonify({"generated_content": response.text})
 
 
 @app.route('/quiz', methods=['POST'])
@@ -83,18 +80,14 @@ def quiz():
         "top_p": top_p,
     }
 
-    responses = model.generate_content(
+    response = model.generate_content(
         [prompt],
         generation_config=generation_config,
         safety_settings=harm_categories,
-        stream=True,
+        stream=False,
     )
 
-    generated_content = ""
-    for response in responses:
-        generated_content += response.text
-
-    return jsonify({"generated_content": generated_content})
+    return jsonify({"generated_content": response.text})
 
 
 @app.route('/summary', methods=['POST'])
@@ -128,6 +121,13 @@ def chat():
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
 
+    harm_categories = {
+        generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    }
+
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
@@ -140,6 +140,7 @@ def chat():
         [prompt],
         generation_config=generation_config,
         stream=False,
+        safety_settings=harm_categories
     )
     return jsonify({"generated_content": response.text})
 
