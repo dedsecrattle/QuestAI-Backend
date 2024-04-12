@@ -97,7 +97,7 @@ def summary():
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
 
-    prompt = f"Summarise the following text - {text}"
+    prompt = f"Summarise the following text in around 50% of the original length- {text}"
     parameters = {
     "max_output_tokens": 2000,
     "temperature": 0.1,
