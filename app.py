@@ -38,8 +38,7 @@ def generate():
 
 
 
-    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate Learning content on the topic {topic} and subtopic {subtopic} in around 1500 words
-      for a {level} level student."
+    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate Learning content on the topic {topic} and subtopic {subtopic} in around 1500 words for a {level} level student."
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
