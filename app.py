@@ -24,7 +24,7 @@ def generate():
     data = request.get_json()
     topic = data.get('topic', '')
     subtopic = data.get('subtopic', '')
-    level =  data.get('level', '')
+    level = data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
@@ -132,9 +132,9 @@ def chat():
     "temperature": 0.1,
     "top_p": 1
     }
-    model = TextGenerationModel.from_pretrained("text-bison-32k")
-    response = model.predict(
-        prompt, **parameters
+    response = model.generate_content(
+        [prompt],
+        stream=False,
     )
     return jsonify({"generated_content": response.text})
 
