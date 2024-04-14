@@ -36,9 +36,15 @@ def generate():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
+    prompt1 = f"You're a highly capable and knowledgeable AI assistant. Your task is to generate a comprehensive, engaging, and age-appropriate learning content on the topic of {topic} and subtopic {subtopic}."
 
+    prompt2 = f"The content should be approximately 1500 words long and tailored for a {level} level student. Cover the key concepts, relevant examples, and practical applications in a clear, structured, and compelling manner. Ensure the content is educational, informative, and accessible to the target audience."
 
-    prompt = f"You're a Helpful AI Assistant helping students to learn about new topics , Generate Learning content on the topic {topic} and subtopic {subtopic} in around 1500 words for a {level} level student."
+    prompt3 = "Provide a strong concluding section that summarizes the main points and leaves the reader with a clear understanding of the topic and additional resources for further exploration."
+
+   
+    prompt = "\n\n".join([prompt1, prompt2, prompt3])
+
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
