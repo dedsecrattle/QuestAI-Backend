@@ -78,7 +78,7 @@ def quiz():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    prompt = f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option for a {level} level Student"
+    prompt = f"You're a AI Assistant tasked to generate MCQ questions for {level} level students with different level of difficulties, Generate 10 MCQ quiz on the topic {topic}  and subtopic {subtopic} with Answer and Explanation providing details about the correct Answer."
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
