@@ -40,7 +40,7 @@ def generate():
 
     prompt2 = f"The content should be approximately 1500 words long and tailored for a {level} level student. Cover the key concepts, relevant examples, and practical applications in a clear, structured, and compelling manner. Ensure the content is educational, informative, and accessible to the target audience."
 
-    prompt3 = "Provide a strong concluding section that summarizes the main points and leaves the reader with a clear understanding of the topic and additional resources for further exploration."
+    prompt3 = "Provide a strong concluding section that summarizes the main points and leaves the reader with a clear understanding of the topic and include citations for the sources used as well additional resources for furthe exploration."
 
    
     prompt = "\n\n".join([prompt1, prompt2, prompt3])
@@ -139,7 +139,7 @@ def chat():
         "top_p": top_p,
     }
 
-    prompt = f"{context}  - Given the above text answer the following question: {question}"
+    prompt = f"You are an AI assistant with extensive knowledge on a wide range of topics. Based on the provided context: {context}, please provide a detailed and informative response to the following question: {question}. Draw upon your expertise to offer a comprehensive, well-reasoned, and helpful answer that addresses the query thoroughly. Your response should be tailored to the user's level of understanding and provide valuable insights , in case of out of context question ask for further Information "
 
     response = model.generate_content(
         [prompt],
