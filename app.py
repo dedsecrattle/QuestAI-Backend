@@ -103,7 +103,7 @@ def summary():
     temperature = data.get('temperature', 0.9)
     top_p = data.get('top_p', 1)
 
-    prompt = f"Summarise the following text in about 1000 words- {text}"
+    prompt = f"You are a highly skilled summarizer tasked with creating a concise and informative 1000-word summary of the following text: {text}. Ensure the summary captures the key ideas, main arguments, and essential information in a clear and structured manner. Highlight the most important points, while omitting unnecessary details. The summary should be accessible and valuable for the reader, providing a comprehensive overview of the source material."
     parameters = {
     "max_output_tokens": 2500,
     "temperature": 0.1,
