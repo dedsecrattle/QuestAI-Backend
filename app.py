@@ -26,8 +26,9 @@ def generate():
     subtopic = data.get('subtopic', '')
     level = data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
-    temperature = data.get('temperature', 0.9)
-    top_p = data.get('top_p', 1)
+    temperature = data.get('temperature', 0.5)
+    top_p = data.get('top_p', 0.4)
+    top_k = data.get('top_k', 20)
 
     harm_categories = {
         generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
@@ -49,6 +50,7 @@ def generate():
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
+        "top_k": top_k
     }
 
     response = model.generate_content(
@@ -68,8 +70,9 @@ def quiz():
     subtopic = data.get('subtopic', '')
     level =  data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
-    temperature = data.get('temperature', 0.9)
-    top_p = data.get('top_p', 1)
+    temperature = data.get('temperature', 0.5)
+    top_p = data.get('top_p', 0.4)
+    top_k = data.get('top_k', 20)
 
     harm_categories = {
         generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
@@ -83,6 +86,7 @@ def quiz():
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
+        "top_k": top_k
     }
 
     response = model.generate_content(
@@ -106,8 +110,9 @@ def summary():
     prompt = f"You are a highly skilled summarizer tasked with creating informative 1000-word summary of the following text: {text}. Ensure the summary captures the key ideas, main arguments, and essential information in a clear and structured manner. Highlight the most important points, while omitting unnecessary details. The summary should be accessible and valuable for the reader, providing a comprehensive overview of the source material."
     parameters = {
     "max_output_tokens": 2500,
-    "temperature": 0.1,
-    "top_p": 1
+    "temperature": 0.5,
+    "top_p": 0.4,
+    "top_k": 20
     }
 
     model = TextGenerationModel.from_pretrained("text-bison-32k")
@@ -123,8 +128,9 @@ def chat():
     context = data.get('context', '')
     question = data.get('question', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
-    temperature = data.get('temperature', 0.9)
-    top_p = data.get('top_p', 1)
+    temperature = data.get('temperature', 0.5)
+    top_p = data.get('top_p', 0.4)
+    top_k = data.get('top_k', 20)
 
     harm_categories = {
         generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
@@ -137,6 +143,7 @@ def chat():
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
         "top_p": top_p,
+        "top_k": top_k
     }
 
     prompt = f"You are an AI assistant with extensive knowledge on a wide range of topics. Based on the provided context: {context}, please provide a detailed and informative response to the following question: {question}. Draw upon your expertise to offer a comprehensive, well-reasoned, and helpful answer that addresses the query thoroughly. Your response should be tailored to the user's level of understanding and provide valuable insights , in case of out of context question ask for further Information "
