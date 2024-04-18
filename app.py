@@ -40,7 +40,7 @@ def generate():
 
     prompt2 = f"The content should be approximately 1500 words long and tailored for a {level} level student. Cover the key concepts, relevant examples, and practical applications in a clear, structured, and compelling manner. Ensure the content is educational, informative, and accessible to the target audience."
 
-    prompt3 = "Provide a strong concluding section that summarizes the main points and leaves the reader with a clear understanding of the topic and include citations for the sources used as well additional resources for furthe exploration."
+    prompt3 = "Provide a strong concluding section that summarizes the main points and leaves the reader with a clear understanding of the topic and include URL links to the citations for the sources used as well additional resources for furthe exploration."
 
    
     prompt = "\n\n".join([prompt1, prompt2, prompt3])
@@ -78,7 +78,13 @@ def quiz():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    prompt = f"You're a AI Assistant tasked to generate MCQ questions for {level} level students with different level of difficulties, Generate 10 MCQ quiz on the topic {topic}  and subtopic {subtopic} with Answer and Explanation providing details about the correct Answer."
+    prompt = (
+        f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option for a {level} level Student, "
+        f"each question should be contained between the same label <question> and </question>,"
+        f"and the MCQ options should be contained between label <answer> and </answer>,"
+        f"and the explanation for each question should be contained in <explanation> and </explanation>"
+        f"attach the correct answer at the end labeled as 10 consecutive letters sperated by commas with <answers> and </answers>")
+
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
