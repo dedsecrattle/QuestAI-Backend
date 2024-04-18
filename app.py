@@ -81,7 +81,7 @@ def quiz():
     prompt = (
         f"Generate 10 MCQ Question on topic {topic} and subtopic {subtopic} with options and correct option for a {level} level Student, "
         f"each question should be contained between the same label <question> and </question>,"
-        f"and the MCQ options should be contained between label <answer> and </answer>,"
+        f"and the MCQ options should be contained between label <option> and </option>,"
         f"and the explanation for each question should be contained in <explanation> and </explanation>"
         f"attach the correct answer at the end labeled as 10 consecutive letters sperated by commas with <answers> and </answers>")
 
