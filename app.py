@@ -12,7 +12,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 vertexai.init(project="cs3263-project", location="us-central1")
-model = GenerativeModel("gemini-1.0-pro-002")
+model = GenerativeModel("gemini-1.5-pro-latest")
 chat = model.start_chat()
 
 
