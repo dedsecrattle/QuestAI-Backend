@@ -12,7 +12,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 vertexai.init(project="cs3263-project", location="us-central1")
-model = GenerativeModel("gemini-1.5-pro-latest")
+model = GenerativeModel("gemini-1.0-pro-002")
 chat = model.start_chat()
 
 
@@ -68,8 +68,8 @@ def quiz():
     subtopic = data.get('subtopic', '')
     level =  data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
-    temperature = data.get('temperature', 0.7)
-    top_p = data.get('top_p', 0.8)
+    temperature = data.get('temperature', 0.3)
+    top_p = data.get('top_p', 0.9)
 
     harm_categories = {
         generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
