@@ -100,7 +100,7 @@ def quiz():
     - Provide 1 Easy, 2 Medium, and 2 Hard questions
     - Follow the specified format exactly as described in the examples
     - Include explanations for all questions
-    - List all 5 correct answers at the end, separated by commas
+    - List all 5 correct answers at the end in order, separated by commas
 
     Notice:
   - Each question must start with <question> and **end with the closing label "</question>"** (important!)
