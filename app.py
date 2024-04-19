@@ -81,7 +81,7 @@ def quiz():
     prompt = f"""
     In this task, you will generate multiple-choice questions following a very specific format. Think of this format as a recipe that you must follow precisely. First, let's internalize the format rules:
 
-    <question>question</question>
+    <question>question</question> (Notice the closing tag here)
     <option>A. Option 1</option>
     <option>B. Option 2</option>
     <option>C. Option 3</option>
@@ -103,7 +103,7 @@ def quiz():
     - List all 10 correct answers at the end, separated by commas
 
     Your response should strictly adhere to the format guidelines. It is crucial to include closing label </question> right after each question.
-    
+    Remember: "</question>" closes the question section, while "</option>" closes an option. Use them carefully.
     """
 
     generation_config = {
