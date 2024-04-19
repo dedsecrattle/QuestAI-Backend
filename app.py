@@ -69,7 +69,7 @@ def quiz():
     level =  data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
     temperature = data.get('temperature', 0.3)
-    top_p = data.get('top_p', 0.7)
+    top_p = data.get('top_p', 0.3)
 
     harm_categories = {
         generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
@@ -99,8 +99,8 @@ def quiz():
         "<option>D. Saturn</option>\n"
         "<explanation>Jupiter is the largest planet in our solar system.</explanation>\n"
         "<answers>C,D</answers>"
-        "The aforementioned format needs to be strictly followed, and you must include the closing </question> tag for each question. "
-        "you must also include the complete list of correct answers at the end, with one letter for each question."
+        "The aforementioned format needs to be strictly followed, and you must include the closing </question> tag after each question. "
+
     )
     generation_config = {
         "max_output_tokens": max_output_tokens,
