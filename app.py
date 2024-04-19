@@ -86,20 +86,19 @@ def quiz():
     <option>B. Option 2</option>
     <option>C. Option 3</option>
     <option>D. Option 4</option>
-    <explanation>This is an explanation of why Option C is the correct answer.</explanation>
+    <explanation>This is an explanation of the answer to the question.</explanation>
 
     Notice:
     - Each question must starts with <question> and ends with closing label </question>
     - There are exactly 4 options, each starting with <option> and ending with closing label </option>
-    - The correct option is clearly indicated in parentheses
     - An explanation is provided starting with <explanation> and ending with </explanation>
-    - At the end, all correct answers are listed in order separated by commas, following the format <answers>A,B,C,D,...</answers>
+    - At the end, all 10 correct answers to the 10 questions are listed in order separated by commas, following the format <answers>A,B,C,D,...</answers>
     
-    Now that you understand the format, please generate 10 MCQ questions on the topic of {topic} and subtopic {subtopic}, following the format rules:
+    Now that you understand the format, please generate 10 MCQ questions on the topic of {topic} and subtopic {subtopic} appropriate for {level} level learners, following the format rules:
 
     - Provide 3 Easy, 4 Medium, and 3 Hard questions
     - Follow the specified format exactly as described in the examples
-    - Ensure each question has 4 options, with the correct answer clearly marked in parentheses
+    - Ensure each question has 4 options
     - Include explanations for all questions
     - List all 10 correct answers at the end, separated by commas
 
