@@ -68,7 +68,7 @@ def quiz():
     subtopic = data.get('subtopic', '')
     level =  data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
-    temperature = data.get('temperature', 0.7)
+    temperature = data.get('temperature', 0.3)
     top_p = data.get('top_p', 0.3)
 
     harm_categories = {
@@ -81,23 +81,23 @@ def quiz():
     prompt = (
         f"Generate 10 MCQ questions on the topic of {topic} and subtopic {subtopic}, with 4 options each and the correct option clearly marked. Structure the questions and answers as follows:\n\n"
         "- Provide 3 Easy, 4 Medium, and 3 Hard questions.\n"
-        "- Each question should begin with <question> and end with </question>.\n"
-        "- For each question, provide 4 options, each contained between the labels <option> and </option>.\n"
+        "- Each question should begin with <question> and end with closing label </question>.\n"
+        "- For each question, provide 4 options, each begins with the labels <option> and end with closing label </option>.\n"
         "- Include an explanation for each question, begin with label <explanation> and end with label </explanation>.\n"
-        "- At the end, list all 10 correct answers to the questions in order, following the format <answers>A,B,C,D,...</answers>\n\n"
+        "- At the end, list all 10 correct answers to the questions in order seperated by commas, following the format <answers>A,B,C,D,...</answers>\n\n"
         "Format Example:\n"
         "<question>What is the capital of France?</question>\n"
         "<option>A. Paris</option>\n"
         "<option>B. London</option>\n"
         "<option>C. Berlin</option>\n"
         "<option>D. Madrid</option>\n"
-        "<explanation>Paris is the capital city of France.</explanation>\n\n"
+        "<explanation>Paris is the capital city of France.</explanation>\n"
         "<question>What is the largest planet in our solar system?</question>\n"
         "<option>A. Earth</option>\n"
         "<option>B. Mars</option>\n"
         "<option>C. Jupiter</option>\n"
         "<option>D. Saturn</option>\n"
-        "<explanation>Jupiter is the largest planet in our solar system.</explanation>\n\n"
+        "<explanation>Jupiter is the largest planet in our solar system.</explanation>\n"
         "<answers>C,D</answers>"
         "The aforementioned format needs to be strictly followed, and you must include the closing </question> tag for each question. "
         "you must also include the complete list of correct answers at the end, with one letter for each question."
