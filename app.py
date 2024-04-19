@@ -68,8 +68,8 @@ def quiz():
     subtopic = data.get('subtopic', '')
     level =  data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
-    temperature = data.get('temperature', 0.3)
-    top_p = data.get('top_p', 0.3)
+    temperature = data.get('temperature', 0.4)
+    top_p = data.get('top_p', 0.8)
 
     harm_categories = {
         generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
@@ -78,30 +78,52 @@ def quiz():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    prompt = (
-        f"Generate 10 MCQ questions on the topic of {topic} and subtopic {subtopic}, with 4 options each and the correct option clearly marked. Structure the questions and answers as follows:\n\n"
-        "- Provide 3 Easy, 4 Medium, and 3 Hard questions.\n"
-        "- Each question should begin with <question> and end with closing label </question>.\n"
-        "- For each question, provide 4 options, each begins with the labels <option> and end with closing label </option>.\n"
-        "- Include an explanation for each question, begin with label <explanation> and end with label </explanation>.\n"
-        "- At the end, list all 10 correct answers to the questions in order seperated by commas, following the format <answers>A,B,C,D,...</answers>\n\n"
-        "Format Example:\n"
-        "<question>What is the capital of France?</question>\n"
-        "<option>A. Paris</option>\n"
-        "<option>B. London</option>\n"
-        "<option>C. Berlin</option>\n"
-        "<option>D. Madrid</option>\n"
-        "<explanation>Paris is the capital city of France.</explanation>\n"
-        "<question>What is the largest planet in our solar system?</question>\n"
-        "<option>A. Earth</option>\n"
-        "<option>B. Mars</option>\n"
-        "<option>C. Jupiter</option>\n"
-        "<option>D. Saturn</option>\n"
-        "<explanation>Jupiter is the largest planet in our solar system.</explanation>\n"
-        "<answers>C,D</answers>"
-        "The aforementioned format needs to be strictly followed, and you must include the closing </question> tag after each question. "
+    prompt = """
+    In this task, you will generate multiple-choice questions following a very specific format. Think of this format as a recipe that you must follow precisely. First, let's internalize the format rules:
 
-    )
+    <question>Example Question Goes Here?</question>
+    <option>A. Option 1</option>
+    <option>B. Option 2</option>
+    <option>C. Option 3 (this is the correct answer)</option>
+    <option>D. Option 4</option>
+    <explanation>This is an explanation of why Option C is the correct answer.</explanation>
+
+    Notice:
+    - Each question starts with <question> and ends with closing label </question>
+    - There are exactly 4 options, each starting with <option> and ending with closing label </option>
+    - The correct option is clearly indicated in parentheses
+    - An explanation is provided starting with <explanation> and ending with </explanation>
+    - At the end, all correct answers are listed in order separated by commas, following the format <answers>A,B,C,D,...</answers>
+
+    Positive Example (correct format):
+    <question>What is the closest planet to the Sun?</question>
+    <option>A. Earth</option>
+    <option>B. Mars</option>
+    <option>C. Mercury (this is the correct answer)</option>
+    <option>D. Venus</option>
+    <explanation>Mercury is the closest planet to the Sun in our solar system.</explanation>
+
+    <question>What is the largest ocean on Earth?</question>
+    <option>A. Atlantic Ocean</option>
+    <option>B. Indian Ocean</option>
+    <option>C. Arctic Ocean</option>
+    <option>D. Pacific Ocean (this is the correct answer)</option>
+    <explanation>The Pacific Ocean is the largest ocean on Earth.</explanation>
+
+    <answers>C,D</answers>
+    
+    Now that you understand the format, please generate 10 MCQ questions on the topic of {topic} and subtopic {subtopic}, following the format rules:
+
+    - Provide 3 Easy, 4 Medium, and 3 Hard questions
+    - Follow the specified format exactly as described in the examples
+    - Ensure each question has 4 options, with the correct answer clearly marked in parentheses
+    - Include explanations for all questions
+    - List all 10 correct answers at the end, separated by commas
+
+    Your response should strictly adhere to the format guidelines.
+    
+    """
+
     generation_config = {
         "max_output_tokens": max_output_tokens,
         "temperature": temperature,
