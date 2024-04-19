@@ -81,7 +81,7 @@ def quiz():
     prompt = """
     In this task, you will generate multiple-choice questions following a very specific format. Think of this format as a recipe that you must follow precisely. First, let's internalize the format rules:
 
-    <question>Example Question Goes Here?</question>
+    <question>question</question>
     <option>A. Option 1</option>
     <option>B. Option 2</option>
     <option>C. Option 3 (this is the correct answer)</option>
@@ -89,28 +89,11 @@ def quiz():
     <explanation>This is an explanation of why Option C is the correct answer.</explanation>
 
     Notice:
-    - Each question starts with <question> and ends with closing label </question>
+    - Each question must starts with <question> and ends with closing label </question>
     - There are exactly 4 options, each starting with <option> and ending with closing label </option>
     - The correct option is clearly indicated in parentheses
     - An explanation is provided starting with <explanation> and ending with </explanation>
     - At the end, all correct answers are listed in order separated by commas, following the format <answers>A,B,C,D,...</answers>
-
-    Positive Example (correct format):
-    <question>What is the closest planet to the Sun?</question>
-    <option>A. Earth</option>
-    <option>B. Mars</option>
-    <option>C. Mercury (this is the correct answer)</option>
-    <option>D. Venus</option>
-    <explanation>Mercury is the closest planet to the Sun in our solar system.</explanation>
-
-    <question>What is the largest ocean on Earth?</question>
-    <option>A. Atlantic Ocean</option>
-    <option>B. Indian Ocean</option>
-    <option>C. Arctic Ocean</option>
-    <option>D. Pacific Ocean (this is the correct answer)</option>
-    <explanation>The Pacific Ocean is the largest ocean on Earth.</explanation>
-
-    <answers>C,D</answers>
     
     Now that you understand the format, please generate 10 MCQ questions on the topic of {topic} and subtopic {subtopic}, following the format rules:
 
@@ -120,7 +103,7 @@ def quiz():
     - Include explanations for all questions
     - List all 10 correct answers at the end, separated by commas
 
-    Your response should strictly adhere to the format guidelines. you must remember to add the closing label </question> after each question.
+    Your response should strictly adhere to the format guidelines. It is crucial to include closing label </question> right after each question.
     
     """
 
