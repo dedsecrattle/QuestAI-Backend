@@ -104,7 +104,7 @@ def quiz():
 
     Notice:
   - Each question must start with <question> and **end with the closing label "</question>"** (important!)
-  - There are exactly 4 options, each starting with <option> and ending with "</option>"
+  - There are exactly 4 options after each question, each starting with <option> and ending with "</option>"
 
     """
 
