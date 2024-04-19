@@ -97,7 +97,7 @@ def quiz():
     
     Now that you understand the format, please generate 5 MCQ questions on the topic of {topic} and subtopic {subtopic} appropriate for {level} level learners, following the format rules:
 
-    - Provide 2 Easy, 2 Medium, and 1 Hard questions
+    - Provide 1 Easy, 2 Medium, and 2 Hard questions
     - Follow the specified format exactly as described in the examples
     - Ensure each question has 4 options
     - Include explanations for all questions
