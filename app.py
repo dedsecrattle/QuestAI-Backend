@@ -78,13 +78,13 @@ def quiz():
         generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
     }
 
-    prompt = """
+    prompt = f"""
     In this task, you will generate multiple-choice questions following a very specific format. Think of this format as a recipe that you must follow precisely. First, let's internalize the format rules:
 
     <question>question</question>
     <option>A. Option 1</option>
     <option>B. Option 2</option>
-    <option>C. Option 3 (this is the correct answer)</option>
+    <option>C. Option 3</option>
     <option>D. Option 4</option>
     <explanation>This is an explanation of why Option C is the correct answer.</explanation>
 
