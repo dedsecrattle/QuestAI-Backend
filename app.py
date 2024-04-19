@@ -120,7 +120,7 @@ def quiz():
     - Include explanations for all questions
     - List all 10 correct answers at the end, separated by commas
 
-    Your response should strictly adhere to the format guidelines.
+    Your response should strictly adhere to the format guidelines. you must remember to add the closing label </question> after each question.
     
     """
 
