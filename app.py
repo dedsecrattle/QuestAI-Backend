@@ -92,19 +92,20 @@ def quiz():
     - Each question must starts with <question> and ends with closing label </question>
     - There are exactly 4 options, each starting with <option> and ending with closing label </option>
     - An explanation is provided starting with <explanation> and ending with </explanation>
-    - At the end, all 5 correct answers to the 5 questions are listed in order separated by commas, following the format <answers>A,B,C,D,...</answers>
+    - At the end, all 5 correct answers to the 5 questions are listed in order separated by commas, following the format <answers>A,B,C,D,B</answers>
     - Remember: </question> closes the question section, while </option> closes an option. Use them carefully.
     
     Now that you understand the format, please generate 5 MCQ questions on the topic of {topic} and subtopic {subtopic} appropriate for {level} level learners, following the format rules:
 
     - Provide 1 Easy, 2 Medium, and 2 Hard questions
     - Follow the specified format exactly as described in the examples
-    - Ensure each question has 4 options
     - Include explanations for all questions
-    - List all 5 correct answers at the end, separated by commas
+    - List all 5 correct answers at the end in order, separated by commas
 
-    Your response should strictly adhere to the format guidelines. It is crucial to include closing label </question> right after each question.
-    
+    Notice:
+  - Each question must start with <question> and **end with the closing label "</question>"** (important!)
+  - There are exactly 4 options after each question, each starting with <option> and ending with "</option>"
+
     """
 
     generation_config = {
