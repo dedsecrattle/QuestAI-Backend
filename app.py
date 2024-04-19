@@ -81,7 +81,7 @@ def quiz():
     prompt = f"""
     In this task, you will generate multiple-choice questions following a very specific format. Think of this format as a recipe that you must follow precisely. First, let's internalize the format rules:
 
-    <question>question</question> (Notice the closing tag here)
+    <question>question</question> 
     <option>A. Option 1</option>
     <option>B. Option 2</option>
     <option>C. Option 3</option>
@@ -92,18 +92,19 @@ def quiz():
     - Each question must starts with <question> and ends with closing label </question>
     - There are exactly 4 options, each starting with <option> and ending with closing label </option>
     - An explanation is provided starting with <explanation> and ending with </explanation>
-    - At the end, all 10 correct answers to the 10 questions are listed in order separated by commas, following the format <answers>A,B,C,D,...</answers>
+    - At the end, all 5 correct answers to the 5 questions are listed in order separated by commas, following the format <answers>A,B,C,D,...</answers>
+    - Remember: </question> closes the question section, while </option> closes an option. Use them carefully.
     
     Now that you understand the format, please generate 10 MCQ questions on the topic of {topic} and subtopic {subtopic} appropriate for {level} level learners, following the format rules:
 
-    - Provide 3 Easy, 4 Medium, and 3 Hard questions
+    - Provide 2 Easy, 2 Medium, and 1 Hard questions
     - Follow the specified format exactly as described in the examples
     - Ensure each question has 4 options
     - Include explanations for all questions
-    - List all 10 correct answers at the end, separated by commas
+    - List all 5 correct answers at the end, separated by commas
 
     Your response should strictly adhere to the format guidelines. It is crucial to include closing label </question> right after each question.
-    Remember: "</question>" closes the question section, while "</option>" closes an option. Use them carefully.
+    
     """
 
     generation_config = {
