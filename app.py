@@ -85,7 +85,7 @@ def quiz():
         "- For each question, provide 4 options, each contained between the labels <option> and </option>.\n"
         "- Include an explanation for each question, begin with label <explanation> and end with label </explanation>.\n"
         "- At the end, list all 10 correct answers to the questions in order, following the format <answers>A,B,C,D,...</answers>\n\n"
-        "Format Example with 2 questions:\n"
+        "Format Example:\n"
         "<question>What is the capital of France?</question>\n"
         "<option>A. Paris</option>\n"
         "<option>B. London</option>\n"
@@ -98,8 +98,9 @@ def quiz():
         "<option>C. Jupiter</option>\n"
         "<option>D. Saturn</option>\n"
         "<explanation>Jupiter is the largest planet in our solar system.</explanation>\n\n"
-        "<answers>CD</answers>"
-        "The format above needs to be strictly followed, and you must include the closing </question> tag for each question. you must also include the complete list of correct answers at the end, with one letter for each question."
+        "<answers>C,D</answers>"
+        "The aforementioned format needs to be strictly followed, and you must include the closing </question> tag for each question. "
+        "you must also include the complete list of correct answers at the end, with one letter for each question."
     )
     generation_config = {
         "max_output_tokens": max_output_tokens,
