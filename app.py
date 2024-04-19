@@ -69,7 +69,7 @@ def quiz():
     level =  data.get('level', '')
     max_output_tokens = data.get('max_output_tokens', 3729)
     temperature = data.get('temperature', 0.3)
-    top_p = data.get('top_p', 0.3)
+    top_p = data.get('top_p', 0.7)
 
     harm_categories = {
         generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
